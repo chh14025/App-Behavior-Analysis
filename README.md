@@ -22,6 +22,9 @@ df = pd.read_csv('appdata10.csv')
 df.head()
 df.describe()
 ```
+![](Images/Head.png)
+![](Images/Desc.png)
+
 The data is useful, but we are better off with a visual representation of the data we are using <br />
 To do this, we want to plot all the columns containing numerical data <br />
 We remove columns: <br />
@@ -46,6 +49,7 @@ for i in range(1,dataset.shape[1]+1):
     plt.hist(dataset.iloc[:,i-1] ,bins = val, color = '#3F5D7D',edgecolor = '#3F5D7D')
 ```
 The code yields the following:<br />
+![](Images/Hist.png)
 
 What the graph tells us:
 
@@ -68,6 +72,7 @@ Let's find the correlation between the dependent variable - __enrolled__, and th
 ```python
 dataset.corrwith(df.enrolled).plot.bar()
 ```
+![](Images/Corr.png)
 
 -- As we can see here that the independent variable - __numscreens__ has the highest correlation with the dependent variable - __enrolled__. The more screens per user, the more likely for the user to enroll in the premium features.<br />
 -- Looks like this relation also applies to minigames, where positive engagement with the built in minigames leads to active enrollments of the app's premium features.<br />
@@ -97,6 +102,7 @@ ax.set_xticklabels(
 )
 ax.set_title('Correlation Matrix', size = 20)
 ```
+![](Images/Correlation%20Matrix.png)
 
 This correlation matrix tells us that users who uses premium features are more likely to interact with the app's mini game, and tends to click on more screens. This makes sense because playing mini games and opening more screens
 is a sign of user's active engagement. A user who's more engaged with the app is more likely to enroll in premium features.
@@ -127,8 +133,7 @@ plt.title("Distribution of Time-Since-Enrolled")
 plt.show()
 ```
 We plot the difference into a histogram and this is what we see:
-
-
+![](Images/Time%20since.png)
 
 The majority of users who signed up for premium features usually did within in the first 10 hours after the initial launch of the app.<br />
 This is a interesting find, and we will base our analysis on this finding by excluding the users who enrolled after two days.<br />
