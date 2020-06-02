@@ -1,6 +1,6 @@
 # App-behavior-analysis
 
-__A simple machine learning model built to find out which group of app users is more likely to upgrade to premium__
+__A logistic regression machine learning model that predicts which group of app users is more likely to upgrade to premium with 76% accuracy__
 
 ## EDA
 The initiation phase of the project starts with data cleaning and visualization <br />
