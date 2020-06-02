@@ -197,14 +197,104 @@ loan_screens = ["Loan",
 df["LoansCount"] = df[loan_screens].sum(axis=1)
 df = df.drop(columns=loan_screens)
 ```
+Export the clean data into a new csv
+```python
+df.to_csv('new_appdata10.csv', index = False)
+```
 **Data cleaning complete**
 
+# Model Building
+Now it's time for us to build the acutal model using the clean data.<br />
+we frist import the needed library and split the independent varialbes and the dependent variable (enrolled)
+```python
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import time
 
+dataset = pd.read_csv('new_appdata10.csv')
 
+response = dataset['enrolled']
+dataset = dataset.drop(columns = 'enrolled')
+```
 
+Split the dataset into the training set and the test set:
 
+```python
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(dataset,response,test_size=0.2, random_state = 0)
 
+train_identifier = x_train ['user']
+x_train = x_train.drop(columns = 'user')
+test_identifier = x_test ['user']
+x_test = x_test.drop(columns = 'user')
+```
+**Note: we want to identify the data after we completed the train test split. By creating an identifier for the test sets, we can add the column names back into the data frame consists of the newly split dataset. 
 
+Standardize the data:
+```python
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+x_train2 = pd.DataFrame(sc.fit_transform(x_train))
+x_test2 = pd.DataFrame(sc.transform(x_test))
+x_train2.columns = x_train.columns.values
+x_test2.columns = x_test.columns.values
+x_train2.index = x_train.index.values
+x_test2.index = x_test.index.values
 
+x_train = x_train2
+x_test = x_test2
+```
+We use Logistic Regression for this analysis <br />
+Note that we use "l1" as penalty <br />
+This is because due to the nature of app data, which can sometimes be strongly correlated to each other. We want to minimize any significant correlation between variables. The goal of having "l1" as penalty for the logistic regression is so that we can have an unbiased regression givin a dataset from an app.
+```
+from sklearn.linear_model import LogisticRegression
+classifier = LogisticRegression(random_state = 0, penalty = 'l1',solver='liblinear')
+classifier.fit(x_train, y_train)
+
+y_pred = classifier.predict(x_test)
+```
+## Metrics
+Let's see how well our model did:
+```Python
+from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, precision_score, recall_score
+cm = confusion_matrix(y_test, y_pred)
+accuracy_score(y_test, y_pred)
+precision_score(y_test, y_pred)
+recall_score(y_test,y_pred)
+f1_score(y_test,y_pred)
+```
+![](Images/Scores.png)
+
+here's the heatmap for our predicted results vs the testing set results
+```python
+from sklearn.model_selection import cross_val_score
+accuracies = cross_val_score(estimator = classifier, X = x_train, y = y_train, cv = 10)
+print ('Logistic Accuracy: %0.3f(+/- %0.3f)' %(accuracies.mean(), accuracies.std()*2))
+```
+![](Images/Heatmap.png)
+
+We have an accuracy score around 76% <br />
+Let's confirm it using cross validation:
+```python
+from sklearn.model_selection import cross_val_score
+accuracies = cross_val_score(estimator = classifier, X = x_train, y = y_train, cv = 10)
+print ('Logistic Accuracy: %0.3f(+/- %0.3f)' %(accuracies.mean(), accuracies.std()*2))
+```
+![](Images/Crossval.png)
+The cross validation method confirms that our Logistic Accuracy: is around 76.7%(+/- 0.009)<br />
+
+__Finally, let's put the original data and the predicted data side by side in a chart__
+```python
+final_results = pd.concat([y_test, test_identifier], axis = 1).dropna()
+final_results['predicted_results'] = y_pred
+final_results[['user', 'enrolled','predicted_results']].reset_index(drop = True)
+```
+![](Images/sidebyside.png)
+
+## Conclusion
+## Future Work
 Data courtesy of SuperDataScience.com
 Code idea origin: Dr.Ryan Ahmed PhD. MBA (modified)
