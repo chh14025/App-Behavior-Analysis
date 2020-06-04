@@ -316,7 +316,7 @@ This code is based off of Dr.Ryan Ahmed's code from superdatascience.com with so
 
 ## Future Work
 
-This model is far from perfect. More variables can be added in the future as the app develops, which requires constant maintance of the app. New variables can introduce new challenges to the model. This includes the possibility where the marketing team now wants to target more than two groups of customers. Here a simple classification model will not suffice. we can possibly utilize clustering, or a more in-depth principal component analysis for a more complex customer data set. If time allows, building a nural network can also be a great option. <br />
+This model is far from perfect. More variables can be added in the future as the app develops, which requires constant maintance of the code. New variables can introduce new challenges to the model. This includes the possibility where the marketing team now wants to target more than two groups of customers. Here a simple classification model will not suffice. we can possibly utilize clustering, or a more in-depth principal component analysis for a more complex customer data set. If time allows, building a nural network can also be a great option. <br />
 
 
 ## Source
