@@ -320,5 +320,5 @@ This model is far from perfect. More variables can be added in the future as the
 
 
 ## Source
-Data courtesy of SuperDataScience.com
+Data courtesy of SuperDataScience.com <br />
 Code idea origin: Dr.Ryan Ahmed PhD. MBA (modified)
