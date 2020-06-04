@@ -51,7 +51,7 @@ for i in range(1,dataset.shape[1]+1):
 The code yields the following:<br />
 ![](Images/Hist.png)
 
-What the graph tells us:
+Variable Analysis:
 
 	1. dayofweek: 	The data is quite evenly distributed which makes sense because this app doesn't require major time commitment.
 	
@@ -63,9 +63,21 @@ What the graph tells us:
 
 	5. minigame:	This is a binary variable that shows whether users played the mini game built in to the app. 0 is no, and 1 is yes. There are less users who played the minigame than those that did.
 	
-	6. used_premium:This is a binary variable that shows whether users used the premium features of the app. 0 is no, and 1 is yes. There are less users who used the features than those that did
+	6. used_premium:This is a binary variable that shows whether users used the premium features of the app. 0 is no, and 1 is yes. There are less users who used the features than those that did.
 	
-	7. liked:	This is a binary variable that shows whether users liked the app. 0 is no, and 1 is yes. There are less users who liked the app than those that did
+	7. liked:	This is a binary variable that shows whether users liked the app. 0 is no, and 1 is yes. There are less users who liked the app than those that did.
+	
+	Variables we dropped:
+	
+	8. Users:	User ID.
+	
+	9. enrolled_da.:The date of enrollment, or the day user started to use paid premium features.
+	
+	10.screen_list:	A list of screens users opened when they use the app.
+	
+	11.first_open:	The frist time users opened the app.
+	
+	12.enrolled:	Whether this particular user enrolled in the paid premium features of this app.
 	
 ### Correlation
 Let's find the correlation between the dependent variable - __enrolled__, and the independent variables (columns 1-7 used in the histogram above)
