@@ -295,6 +295,18 @@ final_results[['user', 'enrolled','predicted_results']].reset_index(drop = True)
 ![](Images/sidebyside.png)
 
 ## Conclusion
+
+The model serves a simple form of market segmentation where customers are split into the "likely to subscribe" and the "unlikely to subscribe group". This model can be further improved by running it with new customer data. The data is dynamic, and this model can be as well. Therefore by adding more fresh data to the set can not only improve the model accuracy, but also to help the marketing team identify those who are likely to subscribe and target those who arn't. This can potentially reduce cost by lessening high cost promotions to the likely subscribers, while simultaneously reduce opportunity cost for the marketing team, and increase customer subscription rate through well targeted marketing strategies. 
+
+## Challenges
+
+This code is based off of Dr.Ryan Ahmed's code from superdatascience.com with some modifications in the graphs used. There are a lot of new things I learnt while following Dr.Ahmed, one of which is adding column parameters back to a dataset after it's split into training and test sets. This is a very simple yet effect way of cleaning up data to prevent confusion further down the road. Also instead of using Dr.Ahmed's heatmap. I went out and found myself a different version, and installed the heatmap library on Anaconda. Although I didn't end up using it, the understanding of this library will be an excellent knowledge in the future when I work with big data. The "l1 penalty" was tricky as I didn't know it existed prior to this project, and neither was I familiar with the dynamic of app data. Learning it wasn't a challenge, but rather something interesting that I can use in my future work.
+
 ## Future Work
+
+This model is far from perfect. More variables can be added in the future as the app develops, which requires constant maintance of the app. New variables can introduce new challenges to the model. This includes the possibility where the marketing team now wants to target more than two groups of customers. Here a simple classification model will not suffice. we can possibly utilize clustering, or a more in-depth principal component analysis for a more complex customer data set. If time allows, building a nural network can also be a great option. <br />
+
+
+## Source
 Data courtesy of SuperDataScience.com
 Code idea origin: Dr.Ryan Ahmed PhD. MBA (modified)
